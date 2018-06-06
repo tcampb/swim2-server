@@ -1,5 +1,7 @@
 package com.swim.model;
 
+import java.util.ArrayList;
+
 public class Asn{
 
 	private int asn;
@@ -7,17 +9,18 @@ public class Asn{
 	private String expectedArrivalDate;
 	private String expectedArrivalTime;
 	private String status;
-	private Products[] serials;
+	private ArrayList<Products> serials;
+	private String dockDoor;
 
 	// No Args Constructor
 	public Asn() {
 	}
 
-    public Products[] getSerials() {
+    public ArrayList<Products> getSerials() {
         return serials;
     }
 
-    public void setSerials(Products[] serials) {
+    public void setSerials(ArrayList<Products> serials) {
         this.serials = serials;
     }
 
@@ -62,6 +65,11 @@ public class Asn{
 		this.status = status;
 	}
 
+    public String getDockDoor() {
+        return dockDoor;
+    }
 
-
+    public void setDockDoor(String dockDoor) {
+        this.dockDoor = dockDoor;
+    }
 }

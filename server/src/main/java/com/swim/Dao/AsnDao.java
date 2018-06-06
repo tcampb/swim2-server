@@ -21,10 +21,13 @@ public class AsnDao {
 
     //Creates an Asn in the DB
     public void createAsn(Asn asn) {
-        SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(asn);
-        System.out.println(asn.getStatus());
-        asn.setSerials(null);
-        jdbcTemplate.update("insert into asns values (:asn, :vendorId, :expectedArrivalDate,:expectedArrivalTime, :status, :serials)", parameterSource);
+        try {
+            asn.setSerials(null);
+            SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(asn);
+            jdbcTemplate.update("insert into asns values (:asn, :vendorId, :expectedArrivalDate,:expectedArrivalTime, :status, :serials, :dockDoor)", parameterSource);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     // Create an Asn method to GET the AsnByID
@@ -45,6 +48,7 @@ public class AsnDao {
 
     public List<Asn> getAllAsn(){
         List<Asn> asnList = jdbcTemplate.query("SELECT * FROM asns", new BeanPropertyRowMapper<>(Asn.class));
+        System.out.println(asnList.size());
 
         return asnList;
     }
