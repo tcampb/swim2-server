@@ -1,0 +1,12 @@
+.classpath
+
+.project
+
+.settings/
+
+application.properties
+
+target/
+*node_modules/*
+.idea
+*package-lock*
