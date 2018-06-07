@@ -14,9 +14,13 @@ public class DockdoorService {
     private DockdoorDao dockdoorDao;
 
 
-         public List<Integer> getDockdoor() {
+    public List<Integer> getDockdoor() {
              return dockdoorDao.getDockdoor();
          }
 
 
+
+    public void createDockdoor(int id) {
+        dockdoorDao.createDockdoor(id);
+    }
 }

@@ -4,10 +4,10 @@ import com.swim.Dao.DockdoorDao;
 import com.swim.model.Dockdoor;
 import com.swim.service.DockdoorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class DockdoorController {
@@ -20,4 +20,16 @@ public class DockdoorController {
     public List<Integer> getDockdoor() {
         return dockdoorService.getDockdoor();
     }
+
+
+    @PostMapping("/api/create/dockdoor")
+    public void createDockdoor(@RequestBody Map<String, Integer> myMap){
+         dockdoorService.createDockdoor(myMap.get("id"));
+    }
+
+
+
+
+
+    
 }
