@@ -21,14 +21,20 @@ public class LoginController {
     @CrossOrigin("http://localhost:3001")
     public Map<String, String> login(@RequestBody Map<String, String> userMap) {
         Map<String, String> resMap = new HashMap<>();
-        try {
-            User user = userService.authenticateUser(userMap.get("username"), userMap.get("password"));
-            resMap.put("role", user.getRole());
-            return resMap;
-        } catch (Exception e) {
-            resMap.put("role", "invalid");
-            return resMap;
-        }
+        User user;
+        user = userService.getUserByUserName(userMap.get("username"));
+        if (user != null) {
+            user = userService.authenticateUser(user, userMap.get("password"));
+            if (user != null) {
+                resMap.put("role", user.getRole());
+            } else {
+                resMap.put("role", "invalid");
 
+            }
+        } else {
+            resMap.put("role", "user does not exist");
+        }
+        return resMap;
     }
+
 }

@@ -11,8 +11,7 @@ public class UserService {
     @Autowired
     UserDao userDao;
 
-    public User authenticateUser(String username, String password) {
-        User user = userDao.getUserByUsername(username);
+    public User authenticateUser(User user, String password) {
         if (user.getPassword().equals(password)) {
             System.out.println("Password correct");
             return user;
@@ -20,6 +19,11 @@ public class UserService {
             System.out.println("Invalid password");
             return null;
         }
+    }
+
+    public User getUserByUserName(String username) {
+        User user = userDao.getUserByUsername(username);
+        return user;
     }
 
 

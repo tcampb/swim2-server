@@ -58,7 +58,7 @@ public class AsnSpec {
         List<Integer> num = Arrays.asList(1,2,3,4,5);
         Iterator item = num.iterator();
 
-        for(Asn asn : asnList){
+        for(Asn asn : asnList) {
             int idOfAsn = asn.getAsn();
             Assert.assertEquals(item.next(), idOfAsn);
         }
