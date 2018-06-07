@@ -3,11 +3,15 @@ package com.swim.Dao;
 import com.swim.model.Asn;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.stereotype.Repository;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -22,9 +26,8 @@ public class AsnDao {
     //Creates an Asn in the DB
     public void createAsn(Asn asn) {
         try {
-            asn.setSerials(null);
             SqlParameterSource parameterSource = new BeanPropertySqlParameterSource(asn);
-            jdbcTemplate.update("insert into asns values (:asn, :vendorId, :expectedArrivalDate,:expectedArrivalTime, :status, :serials, :dockDoor)", parameterSource);
+            jdbcTemplate.update("insert into asns values (:asn, :vendorId, :expectedArrivalDate,:expectedArrivalTime, :status, '[]', :dockDoor)", parameterSource);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -47,7 +50,21 @@ public class AsnDao {
     }
 
     public List<Asn> getAllAsn(){
-        List<Asn> asnList = jdbcTemplate.query("SELECT * FROM asns", new BeanPropertyRowMapper<>(Asn.class));
+        RowMapper<Asn> rw = new RowMapper<Asn>() {
+            @Override
+            public Asn mapRow(ResultSet resultSet, int i) throws SQLException {
+                Asn asn = new Asn();
+                asn.setAsn(resultSet.getInt(1));
+                asn.setVendorId(resultSet.getString(2));
+                asn.setExpectedArrivalDate(resultSet.getString(3));
+                asn.setExpectedArrivalTime(resultSet.getString(4));
+                asn.setStatus(resultSet.getString(5));
+                asn.setSerials(new ArrayList<>());
+                asn.setDockDoor(resultSet.getString(7));
+                return asn;
+            }
+        };
+        List<Asn> asnList = jdbcTemplate.query("SELECT * FROM asns", rw);
         System.out.println(asnList.size());
 
         return asnList;
