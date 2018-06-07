@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("http://localhost:8080")
@@ -41,6 +43,12 @@ public class AsnController {
     @GetMapping("/api/asns")
     public List<Asn> getAllAsns() {
         return asnService.getAllAsns();
+    }
+
+
+    @PostMapping("/api/update/product/{asnId}")
+    public void updateProductStatus(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId){
+        asnService.updateToReceived(serialList, asnId);
     }
 
 }
