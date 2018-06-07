@@ -1,10 +1,12 @@
 package com.swim.service;
 
 import com.swim.Dao.AsnDao;
+import com.swim.Dao.ProductDao;
 import com.swim.model.Asn;
 import com.swim.model.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +19,9 @@ public class AsnService {
 
     @Autowired
     ProductService productService;
+
+    @Autowired
+    ProductDao productDao;
 
     public void insertAsn(Asn asn) {
         asnDao.createAsn(asn);
@@ -34,4 +39,12 @@ public class AsnService {
         }
         return asnList;
     }
+
+
+    public void updateToReceived(ArrayList<Integer> serialList, int asnId) {
+        productDao.updateColumnReceived(serialList, asnId);
+    }
+
+
+
 }

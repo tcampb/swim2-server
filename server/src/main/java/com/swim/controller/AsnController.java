@@ -4,12 +4,11 @@ import com.swim.model.Asn;
 import com.swim.service.AsnService;
 import com.swim.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 public class AsnController {
@@ -39,6 +38,12 @@ public class AsnController {
     @GetMapping("/api/asns")
     public List<Asn> getAllAsns() {
         return asnService.getAllAsns();
+    }
+
+
+    @PostMapping("/api/update/product/{asnId}")
+    public void updateProductStatus(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId){
+        asnService.updateToReceived(serialList, asnId);
     }
 
 }
