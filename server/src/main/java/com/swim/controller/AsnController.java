@@ -4,6 +4,7 @@ import com.swim.model.Asn;
 import com.swim.service.AsnService;
 import com.swim.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -11,7 +12,11 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
+@CrossOrigin("http://localhost:8080")
 public class AsnController {
+
+    @Autowired
+    Environment env;
 
     @Autowired
     AsnService asnService;
