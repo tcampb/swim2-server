@@ -2,7 +2,6 @@ package com.swim.Dao;
 
 import com.swim.model.Asn;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -35,7 +34,21 @@ public class AsnDao {
 
     // Create an Asn method to GET the AsnByID
     public Asn getAsnById(int id) {
-        List<Asn> asnList = jdbcTemplate.query("SELECT * FROM asns WHERE asn = " + id, new BeanPropertyRowMapper<Asn>(Asn.class));
+        RowMapper<Asn> rw = new RowMapper<Asn>() {
+            @Override
+            public Asn mapRow(ResultSet resultSet, int i) throws SQLException {
+                Asn asn = new Asn();
+                asn.setAsn(resultSet.getInt(1));
+                asn.setVendorId(resultSet.getString(2));
+                asn.setExpectedArrivalDate(resultSet.getString(3));
+                asn.setExpectedArrivalTime(resultSet.getString(4));
+                asn.setStatus(resultSet.getString(5));
+                asn.setSerials(new ArrayList<>());
+                asn.setDockDoor(resultSet.getString(7));
+                return asn;
+            }
+        };
+        List<Asn> asnList = jdbcTemplate.query("SELECT * FROM asns WHERE asn = " + id, rw);
         return asnList.get(0);
     }
 
