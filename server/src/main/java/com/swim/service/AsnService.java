@@ -46,5 +46,8 @@ public class AsnService {
     }
 
 
+    public void updateToDelivered(ArrayList<Integer> serialList, int asnId) {
+        productDao.updateColumnDelivered(serialList, asnId);
 
+    }
 }

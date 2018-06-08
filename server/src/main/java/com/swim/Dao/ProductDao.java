@@ -47,4 +47,11 @@ public class ProductDao {
 
     }
 
+    public void updateColumnDelivered(ArrayList<Integer> serialList, int asnId) {
+        HashMap<String, Integer> params = new HashMap<>();
+        for (Integer serialId: serialList){
+            params.put("id", serialId);
+            jdbcTemplate.update("UPDATE products SET delivered = 'true' WHERE serial = :id", params);
+        }
+    }
 }

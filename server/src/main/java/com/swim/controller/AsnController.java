@@ -45,10 +45,14 @@ public class AsnController {
         return asnService.getAllAsns();
     }
 
-
-    @PostMapping("/api/update/product/{asnId}")
-    public void updateProductStatus(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId){
+    @PostMapping("/api/update/product/received/{asnId}")
+    public void updateProductStatusReceived(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId){
         asnService.updateToReceived(serialList, asnId);
     }
 
+    @PostMapping("/api/update/product/delivered/{asnId}")
+    public void updateProductStatusDelivered(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId){
+        asnService.updateToDelivered(serialList, asnId);
+    }
 }
+
