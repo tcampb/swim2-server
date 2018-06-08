@@ -88,6 +88,13 @@ public class AsnDao {
     public void updateAsn(String status, int asnId) {
         HashMap<String, String> params = new HashMap<>();
         params.put("status", status);
-        jdbcTemplate.update("UPDATE products SET status = :status WHERE asn = " + asnId, params);
+        jdbcTemplate.update("UPDATE asns SET status = :status WHERE asn = " + asnId, params);
+    }
+
+    public void assignDockDoor(int asnId, int dockdoor) {
+        HashMap<String, Integer> params = new HashMap<>();
+        params.put("asnId", asnId);
+        params.put("dockdoor", dockdoor);
+        jdbcTemplate.update("UPDATE asns SET dockDoor = :dockdoor WHERE asn = :asnId", params);
     }
 }
