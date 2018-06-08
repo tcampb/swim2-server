@@ -27,6 +27,7 @@ public class ProductService {
 
     public void updateReceivedItems(ArrayList<Integer> serialList, int asnId, int dockdoor) {
         productDao.updateColumnReceived(serialList, asnId);
+        asnService.assignDockDoor(asnId, dockdoor);
         asnService.checkIfAllProductsReceived(asnId);
     }
 

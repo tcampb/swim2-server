@@ -90,4 +90,11 @@ public class AsnDao {
         params.put("status", status);
         jdbcTemplate.update("UPDATE asns SET status = :status WHERE asn = " + asnId, params);
     }
+
+    public void assignDockDoor(int asnId, int dockdoor) {
+        HashMap<String, Integer> params = new HashMap<>();
+        params.put("asnId", asnId);
+        params.put("dockdoor", dockdoor);
+        jdbcTemplate.update("UPDATE asns SET dockDoor = :dockdoor WHERE asn = :asnId", params);
+    }
 }

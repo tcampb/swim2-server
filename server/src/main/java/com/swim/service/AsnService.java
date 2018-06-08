@@ -6,7 +6,6 @@ import com.swim.model.Asn;
 import com.swim.model.Products;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,5 +61,9 @@ public class AsnService {
         asnDao.updateAsn("received", asnId);
 
         return true;
+    }
+
+    public void assignDockDoor(int asnId, int dockdoor) {
+        asnDao.assignDockDoor(asnId, dockdoor);
     }
 }
