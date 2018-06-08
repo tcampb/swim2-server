@@ -1,7 +1,6 @@
 package com.swim.service;
 
 import com.swim.Dao.DockdoorDao;
-import com.swim.model.Dockdoor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

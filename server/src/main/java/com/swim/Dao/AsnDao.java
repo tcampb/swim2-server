@@ -88,6 +88,6 @@ public class AsnDao {
     public void updateAsn(String status, int asnId) {
         HashMap<String, String> params = new HashMap<>();
         params.put("status", status);
-        jdbcTemplate.update("UPDATE products SET status = :status WHERE asn = " + asnId, params);
+        jdbcTemplate.update("UPDATE asns SET status = :status WHERE asn = " + asnId, params);
     }
 }
