@@ -54,5 +54,11 @@ public class AsnController {
     public void updateProductStatusDelivered(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId){
         asnService.updateToDelivered(serialList, asnId);
     }
+
+    @PostMapping("/api/submit/received/{asnId}/{dockdoor}")
+    public void productReceivedForm(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId, @PathVariable int dockdoor){
+        productService.updateReceivedItems(serialList, asnId, dockdoor);
+    }
+
 }
 

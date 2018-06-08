@@ -31,7 +31,7 @@ public class ProductDao {
 
     // Create an Asn method to GET the AsnByID
     public List<Products> getProductsByAsnId(int id) {
-        List<Products> productsList = jdbcTemplate.query("SELECT * FROM products WHERE asn = " + id, new BeanPropertyRowMapper<Products>(Products.class)  );
+        List<Products> productsList = jdbcTemplate.query("SELECT * FROM products WHERE asn = " + id, new BeanPropertyRowMapper<Products>(Products.class));
         return productsList;
     }
 
@@ -39,19 +39,21 @@ public class ProductDao {
     // Create a method to update the column received to true
     public void updateColumnReceived(ArrayList<Integer> serialList, int asnId) {
         HashMap<String, Integer> params = new HashMap<>();
-        for (Integer serialId: serialList){
-                params.put("id", serialId);
-             jdbcTemplate.update("UPDATE products SET received = 'true' WHERE serial = :id", params);
+        for (Integer serialId : serialList) {
+            params.put("id", serialId);
+            params.put("asnId", asnId);
+            jdbcTemplate.update("UPDATE products SET received = 'true' WHERE serial = :id AND asn = :asnId", params);
         }
 
 
     }
-
+    //Create a method to update the column delivered to true
     public void updateColumnDelivered(ArrayList<Integer> serialList, int asnId) {
         HashMap<String, Integer> params = new HashMap<>();
-        for (Integer serialId: serialList){
+        for (Integer serialId : serialList) {
             params.put("id", serialId);
-            jdbcTemplate.update("UPDATE products SET delivered = 'true' WHERE serial = :id", params);
+            params.put("asnId", asnId);
+            jdbcTemplate.update("UPDATE products SET delivered = 'true' WHERE serial = :id AND asn = :asnId", params);
         }
     }
 }

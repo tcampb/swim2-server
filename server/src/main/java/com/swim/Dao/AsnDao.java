@@ -62,7 +62,7 @@ public class AsnDao {
 
     }
 
-    public List<Asn> getAllAsn(){
+    public List<Asn> getAllAsn() {
         RowMapper<Asn> rw = new RowMapper<Asn>() {
             @Override
             public Asn mapRow(ResultSet resultSet, int i) throws SQLException {
@@ -77,10 +77,17 @@ public class AsnDao {
                 return asn;
             }
         };
+
+
         List<Asn> asnList = jdbcTemplate.query("SELECT * FROM asns", rw);
         System.out.println(asnList.size());
 
         return asnList;
     }
 
+    public void updateAsn(String status, int asnId) {
+        HashMap<String, String> params = new HashMap<>();
+        params.put("status", status);
+        jdbcTemplate.update("UPDATE products SET status = :status WHERE asn = " + asnId, params);
+    }
 }

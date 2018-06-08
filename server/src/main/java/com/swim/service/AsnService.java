@@ -50,4 +50,17 @@ public class AsnService {
         productDao.updateColumnDelivered(serialList, asnId);
 
     }
+
+    public boolean checkIfAllProductsReceived(int asnId) {
+        List<Products> productslist = productDao.getProductsByAsnId(asnId);
+        for(Products product : productslist){
+            if(!product.getReceived()){
+                return false;
+            }
+
+        }
+        asnDao.updateAsn("received", asnId);
+
+        return true;
+    }
 }
