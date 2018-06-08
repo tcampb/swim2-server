@@ -12,13 +12,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
+@CrossOrigin("http://localhost:3000")
 public class LoginController {
 
     @Autowired
     UserService userService;
 
     @PostMapping("/login")
-    @CrossOrigin("http://localhost:3001")
+    @CrossOrigin("http://localhost:3000")
     public Map<String, String> login(@RequestBody Map<String, String> userMap) {
         Map<String, String> resMap = new HashMap<>();
         User user;
