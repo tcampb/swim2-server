@@ -31,5 +31,8 @@ public class ProductService {
     }
 
 
-
+    public void updateDeliveredItems(ArrayList<Integer> serialList, int asnId, int dockdoor) {
+        productDao.updateColumnDelivered(serialList, asnId);
+        asnService.checkIfAllProductsDelivered(asnId);
+    }
 }

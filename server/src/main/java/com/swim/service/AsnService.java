@@ -57,10 +57,19 @@ public class AsnService {
             if(!product.getReceived()){
                 return false;
             }
-
         }
         asnDao.updateAsn("received", asnId);
+        return true;
+    }
 
+    public boolean checkIfAllProductsDelivered(int asnId) {
+        List<Products> productslist = productDao.getProductsByAsnId(asnId);
+        for(Products product : productslist){
+            if(!product.getReceived()){
+                return false;
+            }
+        }
+        asnDao.updateAsn("delivered", asnId);
         return true;
     }
 }

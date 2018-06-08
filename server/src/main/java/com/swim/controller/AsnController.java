@@ -28,16 +28,18 @@ public class AsnController {
     public void receiveAsn(@RequestBody Asn asn) {
         asn.setStatus("in-transit");
         asn.setDockDoor("Not assigned");
-        asn.setExpectedArrivalDate(new StringBuilder(asn.getExpectedArrivalDate()).reverse().toString());
+        String[] updatedDateArr = asn.getExpectedArrivalDate().split("/");
+        String updatedDate = updatedDateArr[2] + "-" + updatedDateArr[0] + "-" + updatedDateArr[1];
+        asn.setExpectedArrivalDate(updatedDate);
         asnService.insertAsn(asn);
         asn.getSerials().stream()
-                        .forEach(product -> {
-                            product.getSerial();
-                            product.setAsn(asn.getAsn());
-                            product.setDelivered(false);
-                            product.setReceived(false);
-                            productService.insertProduct(product);
-                        });
+                .forEach(product -> {
+                    product.getSerial();
+                    product.setAsn(asn.getAsn());
+                    product.setDelivered(false);
+                    product.setReceived(false);
+                    productService.insertProduct(product);
+                });
     }
 
     @GetMapping("/api/asns")
@@ -46,18 +48,23 @@ public class AsnController {
     }
 
     @PostMapping("/api/update/product/received/{asnId}")
-    public void updateProductStatusReceived(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId){
+    public void updateProductStatusReceived(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId) {
         asnService.updateToReceived(serialList, asnId);
     }
 
     @PostMapping("/api/update/product/delivered/{asnId}")
-    public void updateProductStatusDelivered(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId){
+    public void updateProductStatusDelivered(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId) {
         asnService.updateToDelivered(serialList, asnId);
     }
 
     @PostMapping("/api/submit/received/{asnId}/{dockdoor}")
-    public void productReceivedForm(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId, @PathVariable int dockdoor){
+    public void productReceivedForm(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId, @PathVariable int dockdoor) {
         productService.updateReceivedItems(serialList, asnId, dockdoor);
+    }
+
+    @PostMapping("/api/submit/delivered/{asnId}/{dockdoor}")
+    public void productDeliveredForm(@RequestBody ArrayList<Integer> serialList, @PathVariable int asnId, @PathVariable int dockdoor) {
+        productService.updateDeliveredItems(serialList, asnId, dockdoor);
     }
 
 }
