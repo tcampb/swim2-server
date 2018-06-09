@@ -18,7 +18,7 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/login")
+    @PostMapping("/api/login")
     @CrossOrigin("http://localhost:3000")
     public Map<String, String> login(@RequestBody Map<String, String> userMap) {
         Map<String, String> resMap = new HashMap<>();
