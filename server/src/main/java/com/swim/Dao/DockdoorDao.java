@@ -15,17 +15,13 @@ import java.util.List;
 public class DockdoorDao {
 
 
-
     @Autowired
     private NamedParameterJdbcTemplate jdbcTemplate;
 
 
-
     // Create a method to return the dockDoorId
     public List<Integer> getDockdoor() {
-        
         List<Integer> ids = new ArrayList<>();
-
         List<Dockdoor> dockdoorList = jdbcTemplate.query("SELECT id FROM dockdoors",
                 new BeanPropertyRowMapper<Dockdoor>(Dockdoor.class));
 
@@ -33,14 +29,21 @@ public class DockdoorDao {
             ids.add(dockdoor.getId());
         }
         return ids;
-
     }
 
     // Method for creating a new Dockdoor
     public void createDockdoor(int id) {
-        HashMap<String, Integer>  params = new HashMap<>();
+        HashMap<String, Integer> params = new HashMap<>();
         params.put("id", id);
         jdbcTemplate.update("INSERT INTO dockdoors VALUES (:id) ", params);
+
+    }
+
+    public void deleteDockDoorById(int id) {
+        HashMap<String, Integer> testMap = new HashMap<>();
+        testMap.put("id", id);
+        jdbcTemplate.update("DELETE FROM dockdoors VALUES :id ", testMap);
+
 
     }
 }

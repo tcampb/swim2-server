@@ -29,7 +29,7 @@ public class AsnSpec {
     @Before
     public void setup() {
         // Create the Asn object
-        for (int i=1; i < 6; i++) {
+        for (int i = 1; i < 6; i++) {
             Asn asn = new Asn();
             // Create data to be tested
             asn.setAsn(i);
@@ -84,7 +84,9 @@ public class AsnSpec {
 
     @Test
     public void updateAsn() {
-
+        asnDao.updateAsn("delivered", 2);
+        Asn asn = asnDao.getAsnById(2);
+        Assert.assertEquals(asn.getStatus(), "delivered");
 
     }
 
