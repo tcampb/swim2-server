@@ -27,6 +27,11 @@ public class DockdoorController {
         }
     }
 
+    @PostMapping("/api/delete/dockdoor/{id}")
+    public void deleteDockdoor(@PathVariable Integer id){
+            dockdoorService.deleteDockDoor(id);
+    }
+
 
 
 

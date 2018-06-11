@@ -22,4 +22,8 @@ public class DockdoorService {
     public void createDockdoor() {
         dockdoorDao.createDockdoor();
     }
+
+    public void deleteDockDoor(Integer id) {
+        dockdoorDao.deleteDockDoorById(id);
+    }
 }
