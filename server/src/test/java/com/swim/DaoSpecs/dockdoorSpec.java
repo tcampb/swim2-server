@@ -26,7 +26,7 @@ public class dockdoorSpec {
         List<Integer> dockDoorList = dockdoorDao.getDockdoor();
         Dockdoor dockDoor = new Dockdoor();
         dockDoor.setId(6);
-        dockdoorDao.createDockdoor(dockDoor.getId());
+        dockdoorDao.createDockdoor();
 
         Assert.assertEquals(dockDoor.getId(), 6);
     }
