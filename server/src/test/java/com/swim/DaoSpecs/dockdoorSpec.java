@@ -22,18 +22,17 @@ public class dockdoorSpec {
 
 
     @Test
-    public void createAsn() {
-        List<Integer> dockDoorList = dockdoorDao.getDockdoor();
-        Dockdoor dockDoor = new Dockdoor();
-        dockDoor.setId(6);
+    public void createDockdoor() {
+        int lastDoorAdded = dockdoorDao.getDockdoor().size();
         dockdoorDao.createDockdoor();
+        Assert.assertEquals(dockdoorDao.getDockdoor().size(), (lastDoorAdded+1));
 
-        Assert.assertEquals(dockDoor.getId(), 6);
     }
 
     @After
     public void cleanUp() {
-        dockdoorDao.deleteDockDoorById(6);
+        int lastDoorAdded = dockdoorDao.getDockdoor().size();
+        dockdoorDao.deleteDockDoorById(lastDoorAdded);
 
     }
 }
