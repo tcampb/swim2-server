@@ -43,7 +43,7 @@ public class DockdoorDao {
     public void deleteDockDoorById(int id) {
         HashMap<String, Integer> testMap = new HashMap<>();
         testMap.put("id", id);
-        jdbcTemplate.update("DELETE FROM dockdoors VALUES :id ", testMap);
+        jdbcTemplate.update("DELETE FROM dockdoors WHERE id = :id", testMap);
 
 
     }
