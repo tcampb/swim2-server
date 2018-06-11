@@ -19,7 +19,7 @@ public class DockdoorService {
 
 
 
-    public void createDockdoor(int id) {
-        dockdoorDao.createDockdoor(id);
+    public void createDockdoor() {
+        dockdoorDao.createDockdoor();
     }
 }

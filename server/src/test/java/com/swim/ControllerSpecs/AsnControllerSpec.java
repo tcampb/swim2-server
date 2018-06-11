@@ -22,7 +22,7 @@ import java.util.ArrayList;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class AsnController {
+public class AsnControllerSpec {
 
     @Autowired
     private WebApplicationContext wac;
