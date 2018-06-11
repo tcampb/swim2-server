@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @CrossOrigin(value ={"https://swimwarehousemanagement.site", "http://localhost:3000"})
@@ -22,8 +21,10 @@ public class DockdoorController {
 
 
     @PostMapping("/api/create/dockdoor")
-    public void createDockdoor(@RequestBody Map<String, Integer> myMap){
-         dockdoorService.createDockdoor(myMap.get("id"));
+    public void createDockdoor(@RequestBody Integer numberOfDockdoors){
+        for(int i=0; i < numberOfDockdoors; i++) {
+            dockdoorService.createDockdoor();
+        }
     }
 
 
