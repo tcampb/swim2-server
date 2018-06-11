@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin("https://swimwarehousemanagement.site")
+@CrossOrigin(value ={"https://swimwarehousemanagement.site", "http://localhost:3000"})
 public class DockdoorController {
 
     @Autowired

@@ -12,7 +12,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@CrossOrigin("https://swimwarehousemanagement.site")
+@CrossOrigin(value ={"https://swimwarehousemanagement.site", "http://localhost:3000"})
 public class LoginController {
 
     @Autowired

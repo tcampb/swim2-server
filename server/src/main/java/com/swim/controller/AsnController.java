@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@CrossOrigin("https://swimwarehousemanagement.site")
+@CrossOrigin(value ={"https://swimwarehousemanagement.site", "http://localhost:3000"})
 public class AsnController {
 
     @Autowired
