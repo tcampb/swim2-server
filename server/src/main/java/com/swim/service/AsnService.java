@@ -64,7 +64,7 @@ public class AsnService {
     public boolean checkIfAllProductsDelivered(int asnId) {
         List<Products> productslist = productDao.getProductsByAsnId(asnId);
         for(Products product : productslist){
-            if(!product.getReceived()){
+            if(!product.getDelivered()){
                 return false;
             }
         }
