@@ -80,8 +80,6 @@ public class AsnDao {
 
 
         List<Asn> asnList = jdbcTemplate.query("SELECT * FROM asns", rw);
-        System.out.println(asnList.size());
-
         return asnList;
     }
 

@@ -20,11 +20,9 @@ public class DockdoorController {
     }
 
 
-    @PostMapping("/api/create/dockdoor/{numberOfDockdoors}")
-    public void createDockdoor(@PathVariable Integer numberOfDockdoors){
-        for(int i=0; i < numberOfDockdoors; i++) {
-            dockdoorService.createDockdoor();
-        }
+    @PostMapping("/api/create/dockdoor/{id}")
+    public void createDockdoor(@PathVariable Integer id){
+            dockdoorService.createDockdoor(id);
     }
 
     @PostMapping("/api/delete/dockdoor/{id}")

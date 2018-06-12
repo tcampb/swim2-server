@@ -13,10 +13,8 @@ public class UserService {
 
     public User authenticateUser(User user, String password) {
         if (user.getPassword().equals(password)) {
-            System.out.println("Password correct");
             return user;
         } else {
-            System.out.println("Invalid password");
             return null;
         }
     }

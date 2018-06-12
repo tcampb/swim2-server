@@ -1,8 +1,5 @@
 package com.swim.model;
 
-import org.springframework.stereotype.Component;
-
-
 public class Dockdoor {
     private int id;
 

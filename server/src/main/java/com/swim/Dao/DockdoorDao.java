@@ -32,10 +32,10 @@ public class DockdoorDao {
     }
 
     // Method for creating a new Dockdoor
-    public void createDockdoor() {
+    public void createDockdoor(Integer id) {
         HashMap<String, Integer> params = new HashMap<>();
-        params.put("dockdoorid", 1);
-        jdbcTemplate.update("INSERT INTO dockdoors (dockdoorid) VALUES (:dockdoorid) ", params);
+        params.put("id", id);
+        jdbcTemplate.update("INSERT INTO dockdoors (id) VALUES (:id) ", params);
 
 
     }
